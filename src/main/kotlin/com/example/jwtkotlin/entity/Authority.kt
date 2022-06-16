@@ -11,6 +11,6 @@ data class Authority(
 
     @Id
     @Column(name = "authority_name", length = 50)
-    private var authorityName: String? = null
+    var authorityName: String? = null
 ) {
 }
