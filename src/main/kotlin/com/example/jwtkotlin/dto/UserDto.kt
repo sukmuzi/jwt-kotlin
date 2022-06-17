@@ -8,15 +8,15 @@ data class UserDto(
 
     @NotNull
     @Size(min = 3, max = 50)
-    private var username: String,
+    var username: String,
 
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     @NotNull
     @Size(min = 3, max = 100)
-    private var password: String,
+    var password: String,
 
     @NotNull
     @Size(min = 3, max = 50)
-    private var nickname: String
+    var nickname: String
 ) {
 }

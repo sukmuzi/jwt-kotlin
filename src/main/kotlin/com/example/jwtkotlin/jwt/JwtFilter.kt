@@ -2,6 +2,7 @@ package com.example.jwtkotlin.jwt
 
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.security.core.Authentication
 import org.springframework.security.core.context.SecurityContextHolder
 import org.springframework.util.StringUtils
@@ -11,14 +12,14 @@ import javax.servlet.ServletRequest
 import javax.servlet.ServletResponse
 import javax.servlet.http.HttpServletRequest
 
-class JwtFilter(tokenProvider: TokenProvider) : GenericFilterBean() {
+class JwtFilter(@Autowired private var tokenProvider: TokenProvider) : GenericFilterBean() {
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(JwtFilter::class.java)
         private const val AUTHORIZATION_HEADER: String = "Authorization"
     }
 
-    private var tokenProvider: TokenProvider = tokenProvider
+    //private var tokenProvider: TokenProvider = tokenProvider
 
     override fun doFilter(request: ServletRequest?, response: ServletResponse?, chain: FilterChain?) {
         var httpServletRequest: HttpServletRequest = request as HttpServletRequest
