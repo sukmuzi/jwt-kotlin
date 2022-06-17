@@ -6,6 +6,7 @@ import com.example.jwtkotlin.jwt.JwtFilter
 import com.example.jwtkotlin.service.UserService
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
@@ -15,11 +16,9 @@ import javax.validation.Valid
 
 @RestController
 @RequestMapping("/api")
-class UserController(userService: UserService) {
+class UserController(@Autowired private val userService: UserService) {
 
     private val logger: Logger = LoggerFactory.getLogger(UserController::class.java)
-
-    private val userService: UserService = userService
 
     @PostMapping("/signup")
     fun signup(@Valid @RequestBody userDto: UserDto): ResponseEntity<User> {
