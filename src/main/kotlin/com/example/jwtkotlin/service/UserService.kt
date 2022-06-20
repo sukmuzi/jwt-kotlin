@@ -4,10 +4,11 @@ import com.example.jwtkotlin.dto.UserDto
 import com.example.jwtkotlin.entity.Authority
 import com.example.jwtkotlin.entity.User
 import com.example.jwtkotlin.repository.UserRepository
+import com.example.jwtkotlin.util.SecurityUtil
 import org.springframework.security.crypto.password.PasswordEncoder
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Transactional
-import java.util.Collections
+import java.util.*
 
 @Service
 class UserService(userRepository: UserRepository, passwordEncoder: PasswordEncoder) {
@@ -34,5 +35,15 @@ class UserService(userRepository: UserRepository, passwordEncoder: PasswordEncod
         }
 
         return userRepository.save(user)
+    }
+
+    @Transactional
+    fun getMyUserWithAuthorities(): Optional<User>? {
+        return SecurityUtil.getCurrentUsername().flatMap(userRepository::findOneWithAuthoritiesByUsername)
+    }
+
+    @Transactional
+    fun getUserWithAuthorities(username: String): Optional<User> {
+        return userRepository.findOneWithAuthoritiesByUsername(username)
     }
 }

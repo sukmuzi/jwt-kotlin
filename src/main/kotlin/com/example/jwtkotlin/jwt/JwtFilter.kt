@@ -16,7 +16,7 @@ class JwtFilter(@Autowired private var tokenProvider: TokenProvider) : GenericFi
 
     companion object {
         private val logger: Logger = LoggerFactory.getLogger(JwtFilter::class.java)
-        private const val AUTHORIZATION_HEADER: String = "Authorization"
+        const val AUTHORIZATION_HEADER: String = "Authorization"
     }
 
     //private var tokenProvider: TokenProvider = tokenProvider
