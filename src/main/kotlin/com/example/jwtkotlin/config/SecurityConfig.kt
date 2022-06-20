@@ -49,8 +49,8 @@ class SecurityConfig(
             ?.authenticationEntryPoint(jwtAuthenticationEntryPoint)
             ?.accessDeniedHandler(jwtAccessDeniedHandler)
 
-//            ?.and()
-//            ?.apply(JwtSecurityConfig(tokenProvider))
+            ?.and()
+            ?.apply(JwtSecurityConfig(tokenProvider))
 
 
 //        http?.csrf()?.disable()
